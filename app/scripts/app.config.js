@@ -11,6 +11,7 @@ angular.module('pluralsightJwtAuthApp').config(function($stateProvider, $urlRout
 
     .state('register', {
         url: '/register',
-        templateUrl: '/views/register.html'
+        templateUrl: '/views/register.html',
+	controller: 'RegisterCtrl'
     });
 });
