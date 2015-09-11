@@ -11,10 +11,10 @@ angular.module('pluralsightJwtAuthApp')
 
     $http.post(url, user)
         .success(function(res) {
-            alert('success', 'OK!', 'You are now registered!');
-        	authToken.setToken(res.token);
+            alert('success', 'Account Created! ', 'Welcome ' + res.user.email + '!');
+			authToken.setToken(res.token);
 		})
-        .error(function() {
+		.error(function() {
             alert('warning', 'Oops!', 'Could not register.');
         });
     };

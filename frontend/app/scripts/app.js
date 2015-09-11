@@ -9,4 +9,4 @@
  * Main module of the application.
  */
 angular
-  .module('pluralsightJwtAuthApp', ['ui.router']);
+  .module('pluralsightJwtAuthApp', ['ui.router', 'ngAnimate']);

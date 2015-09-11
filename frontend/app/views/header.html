@@ -1,6 +1,6 @@
     <div ng-controller="HeaderCtrl" class="header">
       <div class="navbar navbar-default" role="navigation">
-        <div class="container" ng-cloak>
+        <div class="container">
           <div class="navbar-header">
 
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
@@ -18,8 +18,14 @@
 				<li ui-sref-active="active">
 					<a ui-sref="main">Home</a>
 				</li>
-				<li ng-if="!isAuthenticated" ui-sref-active="active">
+				<li ui-sref-active="active">
+					<a ui-sref="jobs">Jobs</a>
+				</li>
+				<li ng-hide="isAuthenticated()" ui-sref-active="active">
 					<a ui-sref="register">Register</a>
+				</li>
+		  		<li ng-show="isAuthenticated()" ui-sref-active="active">
+					<a ui-sref="logout">Logout</a>
 				</li>
             </ul>
           </div>
