@@ -20,7 +20,7 @@ exports.decode = function(token, secret) {
 
 	var header = JSON.parse(base64Decode(segments[0]));
 	var payload = JSON.parse(base64Decode(segments[1]));
-	
+
 	var rawSignature = segments[0] + '.' + segments[1];
 
 	if (!verify(rawSignature, secret, segments[2])) {
@@ -28,7 +28,7 @@ exports.decode = function(token, secret) {
 	}
 
 	return payload;
-}
+};
 
 function verify(raw, secret, signature) {
 	return signature === sign(raw, secret);
