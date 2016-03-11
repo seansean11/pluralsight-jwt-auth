@@ -9,7 +9,7 @@ angular.module('pluralsightJwtAuthApp')
       }).then(function(res) {
         $auth.setToken(res);
         $state.go('main');
-  			alert('success', 'Account Created! ', 'Welcome ' + res.data.user.email + '!');
+  			alert('success', 'Account Created! ', 'Welcome ' + res.data.user.email + '!  Please email activate your account in the next several days.');
   		}).catch(function(err) {
   			alert('warning', 'Something went wrong :(', err.message);
   		});

@@ -7,8 +7,14 @@ angular.module('pluralsightJwtAuthApp')
         email: $scope.email,
         password: $scope.password
       }).then(function(res) {
+        var message = 'Thanks for coming back ' + res.data.user.email + '!';
+
+        if(!res.data.user.active) {
+          message = 'Please activate your account';
+        }
+
         $state.go('main');
-  			alert('success', 'Welcome ', 'Thanks for coming back ' + res.data.user.email + '!');
+  			alert('success', 'Welcome ',  message);
   		}).catch(handleError);
   	};
 
