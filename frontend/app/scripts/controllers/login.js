@@ -1,19 +1,23 @@
 'use strict';
 
 angular.module('pluralsightJwtAuthApp')
-  .controller('LoginCtrl', function ($scope, alert, auth) {
+  .controller('LoginCtrl', function ($scope, alert, auth, $auth, $state) {
   	$scope.submit = function() {
-  		auth.login($scope.email, $scope.password)
-  			.success(function(res) {
-  				alert('success', 'Welcome ', 'Thanks for coming back ' + res.user.email + '!');
-  			})
-  			.error(handleError);
+  		$auth.login({
+        email: $scope.email,
+        password: $scope.password
+      }).then(function(res) {
+        $state.go('main');
+  			alert('success', 'Welcome ', 'Thanks for coming back ' + res.data.user.email + '!');
+  		}).catch(handleError);
   	};
 
-    $scope.google = function() {
-      auth.googleAuth().then(function(res) {
-          alert('success', 'Welcome ', 'Thanks for coming back ' + res.user.displayName + '!');
-      }, handleError);
+    $scope.authenticate = function(provider) {
+      $auth.authenticate(provider)
+        .then(function(res) {
+          $state.go('main');
+          alert('success', 'Welcome ', 'Thanks for coming back ' + res.data.user.displayName + '!');
+        }, handleError);
     };
 
     function handleError(err) {

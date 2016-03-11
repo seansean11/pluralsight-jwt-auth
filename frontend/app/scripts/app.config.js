@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pluralsightJwtAuthApp').config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+angular.module('pluralsightJwtAuthApp').config(function($stateProvider, $urlRouterProvider, $httpProvider, $authProvider, API_URL) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -27,6 +27,19 @@ angular.module('pluralsightJwtAuthApp').config(function($stateProvider, $urlRout
 			url: '/logout',
 			controller: 'LogoutCtrl'
 		});
+
+    $authProvider.loginUrl = API_URL + 'login';
+    $authProvider.signupUrl = API_URL + 'register';
+
+    $authProvider.google({
+      clientId: '551113649903-vk8uff9mv9dq1cpkpoefja28df6a9hf0.apps.googleusercontent.com',
+      url: API_URL + 'auth/google'
+    });
+
+    $authProvider.facebook({
+      clientId: '781662918576825',
+      url: API_URL + 'auth/facebook'
+    });
 
 		$httpProvider.interceptors.push('authInterceptor');
 })
